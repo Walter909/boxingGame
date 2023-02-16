@@ -6,7 +6,7 @@ public class EnemyChase : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody2D rb;
-    private float speed = 20;
+    public float speed;
     private float distance;
 
 
