@@ -8,13 +8,17 @@ public class EnemyChase : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
     private float distance;
+
     bool facingLeft = false;
 
+    private Health health;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
+
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class EnemyChase : MonoBehaviour
 
     void FixedUpdate()
     {
+
+
         //Where is Devil facing 
         if (rb.transform.position.x > 0 && facingLeft)
         {
@@ -63,6 +69,7 @@ public class EnemyChase : MonoBehaviour
         {
             Debug.Log("Touched enemy from " + collision.name);
             rb.velocity = Vector2.zero;
+            health.TakeDamage(2);
         }
 
     }

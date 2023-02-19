@@ -7,10 +7,6 @@ public class MC : MonoBehaviour
 {
     //Dealing damage
     private Health health;
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
-
-    public LayerMask enemyLayers;
 
     //Moving
     public int moveSpeed;
@@ -83,24 +79,6 @@ public class MC : MonoBehaviour
             anim.SetBool("isPunching", false);
         }
 
-        //Detect all enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        //Damage them
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("We hit " + enemy.name);
-        }
-    }
-
-    void onDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     // Reduce health on collisions with Devil

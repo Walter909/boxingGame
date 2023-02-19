@@ -20,9 +20,7 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-
             //Show Game Over Screen
-
         }
     }
 
