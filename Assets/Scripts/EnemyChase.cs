@@ -24,7 +24,10 @@ public class EnemyChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (health.currentHealth == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Flip()

@@ -18,12 +18,11 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnAfterTime());
     }
 
-
     IEnumerator SpawnAfterTime()
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(3);
             float screenX, screenY;
             Vector2 pos;
 
@@ -35,11 +34,5 @@ public class Spawner : MonoBehaviour
 
     }
 
-    private void DestroyDevil()
-    {
-        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Devil"))
-        {
-            Destroy(o);
-        }
-    }
+
 }
