@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
             float screenX, screenY;
             Vector2 pos;
 

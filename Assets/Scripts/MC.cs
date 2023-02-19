@@ -11,7 +11,6 @@ public class MC : MonoBehaviour
     //Moving
     public int moveSpeed;
 
-    //Controls
     private Animator anim;
     private Rigidbody2D rb;
     private Vector2 moveInput;

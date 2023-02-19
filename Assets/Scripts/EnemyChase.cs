@@ -12,13 +12,14 @@ public class EnemyChase : MonoBehaviour
     bool facingLeft = false;
 
     private Health health;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         health = GetComponent<Health>();
-
     }
 
     // Update is called once per frame
@@ -41,7 +42,6 @@ public class EnemyChase : MonoBehaviour
     void FixedUpdate()
     {
 
-
         //Where is Devil facing 
         if (rb.transform.position.x > 0 && facingLeft)
         {
@@ -59,7 +59,12 @@ public class EnemyChase : MonoBehaviour
 
         if (distance > 150)
         {
+            anim.SetBool("isAttacking", false);
             transform.position = Vector2.MoveTowards(rb.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            anim.SetBool("isAttacking", true);
         }
 
     }
