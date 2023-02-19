@@ -14,4 +14,17 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+
+            //Show Game Over Screen
+
+        }
+    }
+
+
 }
