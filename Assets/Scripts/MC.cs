@@ -34,7 +34,11 @@ public class MC : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Show Game Over Screen
+        // if (health.currentHealth <= 0)
+        // {
 
+        // }
     }
 
 
