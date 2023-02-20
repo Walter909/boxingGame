@@ -5,10 +5,15 @@ using UnityEngine.InputSystem;
 
 public class MC : MonoBehaviour
 {
+    //Dealing damage
+    private Health health;
+
+    //Moving
+    public int moveSpeed;
+
     private Animator anim;
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    public int moveSpeed;
 
     bool facingLeft = true;
 
@@ -17,6 +22,7 @@ public class MC : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -27,11 +33,11 @@ public class MC : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        //Show Game Over Screen when Health is 0
     }
 
 
-    public void OnWalk(InputAction.CallbackContext context)
+    void OnWalk(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
 
@@ -46,6 +52,7 @@ public class MC : MonoBehaviour
             Flip();
         }
 
+
         rb.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
     }
     void Flip()
@@ -56,8 +63,9 @@ public class MC : MonoBehaviour
         facingLeft = !facingLeft;
     }
 
-    public void OnPunch(InputAction.CallbackContext context)
+    void OnPunch(InputAction.CallbackContext context)
     {
+        //Play Punch animation
         bool isPunchTime = context.ReadValue<float>() > 0.1f;
         if (isPunchTime)
         {
@@ -68,6 +76,18 @@ public class MC : MonoBehaviour
         {
             Debug.Log("Done Punching");
             anim.SetBool("isPunching", false);
+        }
+
+    }
+
+    // Reduce health on collisions with Devil
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.name == "Devil")
+        {
+            Debug.Log("Touched enemy from " + collision.name);
+            health.TakeDamage(1);
         }
 
     }
