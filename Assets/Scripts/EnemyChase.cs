@@ -52,7 +52,6 @@ public class EnemyChase : MonoBehaviour
             Flip();
         }
 
-
         distance = Vector2.Distance(transform.position, player.transform.position);
 
         Debug.Log(distance);

@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2591946356215144533, guid: 362390a37c438464dbd1b9d223d420d9, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2591946356215144539, guid: 362390a37c438464dbd1b9d223d420d9, type: 3}
       propertyPath: m_Name
       value: Devil
