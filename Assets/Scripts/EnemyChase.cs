@@ -9,34 +9,75 @@ public class EnemyChase : MonoBehaviour
     public float speed;
     private float distance;
 
+    bool facingLeft = false;
+
+    private Health health;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health.currentHealth == 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
+    void Flip()
+    {
+        Vector3 currentScale = rb.transform.localScale;
+        currentScale.x *= -1;
+        rb.transform.localScale = currentScale;
+        facingLeft = !facingLeft;
     }
 
     void FixedUpdate()
     {
+
+        //Where is Devil facing 
+        if (rb.transform.position.x > 0 && facingLeft)
+        {
+            Flip();
+        }
+        if (rb.transform.position.x < 0 && !facingLeft)
+        {
+            Flip();
+        }
+
         distance = Vector2.Distance(transform.position, player.transform.position);
 
         Debug.Log(distance);
-        if (distance > 90)
+
+        if (distance > 150)
         {
-            transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
+            anim.SetBool("isAttacking", false);
+            transform.position = Vector2.MoveTowards(rb.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
         }
         else
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = 0f;
+            anim.SetBool("isAttacking", true);
         }
 
+    }
+
+    // Reduce health on collisions with Devil
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.name == "Mike")
+        {
+            Debug.Log("Touched enemy from " + collision.name);
+            rb.velocity = Vector2.zero;
+            health.TakeDamage(2);
+        }
 
     }
 }
