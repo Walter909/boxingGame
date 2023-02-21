@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 public class MC : MonoBehaviour
 {
+    //punch soundFX
+    [SerializeField] private AudioSource punchEffect;
+
     //Dealing damage
     private Health health;
     private GameObject attackArea;
 
-    private float timetoAttack = 0.25f;
-    private float timer = 0f;
+    //private float timetoAttack = 0.25f;
+    //private float timer = 0f;
 
     //Moving
     public int moveSpeed;
@@ -87,6 +90,7 @@ public class MC : MonoBehaviour
         {
             anim.SetBool("isPunching", true);
             attackArea.SetActive(true);
+            punchEffect.Play();
         }
         else
         {

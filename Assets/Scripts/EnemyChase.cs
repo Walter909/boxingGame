@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
 {
+    //enemy punch soundFX
+    [SerializeField] private AudioSource enemyPunchEffect;
     public GameObject player;
     private Rigidbody2D rb;
 
@@ -69,6 +71,7 @@ public class EnemyChase : MonoBehaviour
         {
             anim.SetBool("isAttacking", true);
             attackArea.SetActive(true);
+            enemyPunchEffect.Play();
         }
 
     }
