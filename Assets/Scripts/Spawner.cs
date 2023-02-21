@@ -26,8 +26,8 @@ public class Spawner : MonoBehaviour
             float screenX, screenY;
             Vector2 pos;
 
-            screenX = Random.Range(Camera.main.transform.position.x - Screen.width, Camera.main.transform.position.y - Screen.height);
-            screenY = Random.Range(Camera.main.transform.position.x - Screen.width, Camera.main.transform.position.y - Screen.height);
+            screenX = Random.Range(Screen.width, Screen.height);
+            screenY = Random.Range(Screen.width, Screen.height);
             pos = new Vector2(screenX, screenY);
             Instantiate(devil, pos, devil.transform.rotation);
         }
