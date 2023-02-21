@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverScreen : MonoBehaviour
 {
 
+
     public void Setup()
     {
         gameObject.SetActive(true);
@@ -14,6 +15,7 @@ public class GameOverScreen : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1;
     }
 
     public void MainMenuButton()

@@ -16,22 +16,23 @@ public class EnemyChase : MonoBehaviour
     private Health health;
     private Animator anim;
 
+    private int numberDestroyed = 0;
+    public GameObject spawner;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
+        spawner = GameObject.Find("Spawner");
         attackArea = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health.currentHealth == 0)
-        {
-            Destroy(this.gameObject);
-        }
+
     }
 
     void Flip()
@@ -44,6 +45,19 @@ public class EnemyChase : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (health.currentHealth == 0)
+        {
+            numberDestroyed++;
+            Destroy(this.gameObject);
+        }
+
+        Spawner s = spawner.GetComponent<Spawner>();
+
+        Debug.Log("Number defeated: " + numberDestroyed);
+        if (s.numberToSpawn == numberDestroyed)
+        {
+            Debug.Log("Yay WON!");
+        }
 
         //Where is Devil facing 
         if (rb.transform.position.x > 0 && facingLeft)

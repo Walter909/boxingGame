@@ -27,6 +27,8 @@ public class MC : MonoBehaviour
     //Scenes
     public GameOverScreen gameOverScreen;
 
+    public Canvas m_Canvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +57,9 @@ public class MC : MonoBehaviour
         //Show Game Over Screen when Health is 0
         if (health.currentHealth == 0)
         {
+            m_Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             gameOverScreen.Setup();
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
         }
 
         //Show Game win scene when defeated all the enemies
@@ -65,23 +68,22 @@ public class MC : MonoBehaviour
 
     void OnWalk(InputAction.CallbackContext context)
     {
-        if (health.currentHealth != 0)
+
+        moveInput = context.ReadValue<Vector2>();
+
+        anim.SetFloat("isWalking", Mathf.Abs(moveInput.x));
+
+        if (moveInput.x > 0 && facingLeft)
         {
-            moveInput = context.ReadValue<Vector2>();
-
-            anim.SetFloat("isWalking", Mathf.Abs(moveInput.x));
-
-            if (moveInput.x > 0 && facingLeft)
-            {
-                Flip();
-            }
-            if (moveInput.x < 0 && !facingLeft)
-            {
-                Flip();
-            }
-
-            rb.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
+            Flip();
         }
+        if (moveInput.x < 0 && !facingLeft)
+        {
+            Flip();
+        }
+
+        rb.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
+
     }
     void Flip()
     {
