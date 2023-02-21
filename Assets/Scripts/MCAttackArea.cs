@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MCAttackArea : MonoBehaviour
 {
+    public Animator anim;
+
     //MC does damage after attacking 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
@@ -12,6 +14,7 @@ public class MCAttackArea : MonoBehaviour
             Debug.Log("Just hit the " + collider2D.tag);
             Health h = collider2D.GetComponent<Health>();
             h.TakeDamage(1);
+            anim.SetTrigger("takeDamage");
         }
     }
 }
