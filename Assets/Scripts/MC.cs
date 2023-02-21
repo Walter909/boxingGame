@@ -43,10 +43,10 @@ public class MC : MonoBehaviour
     {
         //Heal player health periodically
         timePassed += Time.deltaTime;
-        if (timePassed > 10f && health.currentHealth < 10)
+        if (timePassed > 5f && health.currentHealth < 10)
         {
             Debug.Log("Healing");
-            health.HealDamage(1);
+            health.HealDamage(2);
             timePassed = 0f;
         }
         //Show Game Over Screen when Health is 0
