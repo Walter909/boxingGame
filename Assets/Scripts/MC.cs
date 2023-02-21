@@ -7,6 +7,10 @@ public class MC : MonoBehaviour
 {
     //Dealing damage
     private Health health;
+    private GameObject attackArea;
+
+    private float timetoAttack = 0.25f;
+    private float timer = 0f;
 
     //Moving
     public int moveSpeed;
@@ -17,12 +21,16 @@ public class MC : MonoBehaviour
 
     bool facingLeft = true;
 
+    bool isPunchTime = false;
+
+    private float timePassed = 0f;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
+        attackArea = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -33,9 +41,17 @@ public class MC : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Heal player health periodically
+        timePassed += Time.deltaTime;
+        if (timePassed > 10f && health.currentHealth < 10)
+        {
+            Debug.Log("Healing");
+            health.HealDamage(1);
+            timePassed = 0f;
+        }
         //Show Game Over Screen when Health is 0
+        //Show Game win when defeated all the enemies
     }
-
 
     void OnWalk(InputAction.CallbackContext context)
     {
@@ -66,29 +82,28 @@ public class MC : MonoBehaviour
     void OnPunch(InputAction.CallbackContext context)
     {
         //Play Punch animation
-        bool isPunchTime = context.ReadValue<float>() > 0.1f;
+        isPunchTime = context.ReadValue<float>() > 0.1f;
         if (isPunchTime)
         {
-            Debug.Log("Pressed so pucnch");
             anim.SetBool("isPunching", true);
+            attackArea.SetActive(true);
         }
         else
         {
-            Debug.Log("Done Punching");
             anim.SetBool("isPunching", false);
+            attackArea.SetActive(false);
         }
 
     }
 
     // Reduce health on collisions with Devil
-    void OnTriggerEnter2D(Collider2D collision)
-    {
+    // void OnColliderEnter2D(Collider2D collision)
+    // {
 
-        if (collision.name == "Devil")
-        {
-            Debug.Log("Touched enemy from " + collision.name);
-            health.TakeDamage(1);
-        }
-
-    }
+    //     if (collision.name == "Devil")
+    //     {
+    //         Debug.Log("Touched enemy from " + collision.name);
+    //         health.TakeDamage(1);
+    //     }
+    // }
 }

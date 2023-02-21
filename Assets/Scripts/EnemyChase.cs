@@ -6,6 +6,8 @@ public class EnemyChase : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody2D rb;
+
+    private GameObject attackArea;
     public float speed;
     private float distance;
 
@@ -20,6 +22,7 @@ public class EnemyChase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
+        attackArea = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -59,24 +62,26 @@ public class EnemyChase : MonoBehaviour
         if (distance > 150)
         {
             anim.SetBool("isAttacking", false);
+            attackArea.SetActive(false);
             transform.position = Vector2.MoveTowards(rb.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
         }
         else
         {
             anim.SetBool("isAttacking", true);
+            attackArea.SetActive(true);
         }
 
     }
 
-    // Reduce health on collisions with Devil
-    void OnTriggerEnter2D(Collider2D collision)
+    // When you hit Mike kill momentum
+    void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.name == "Mike")
+        if (collision.collider.tag == "Mike")
         {
-            Debug.Log("Touched enemy from " + collision.name);
+            Debug.Log("Touched enemy from " + collision.collider.tag);
+            rb.isKinematic = true;
             rb.velocity = Vector2.zero;
-            health.TakeDamage(2);
         }
 
     }
