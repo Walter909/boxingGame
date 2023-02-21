@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
     }
 
-    public void HealDamage(int amount)
+    public void HealDamage(float amount)
     {
         currentHealth += amount;
     }
