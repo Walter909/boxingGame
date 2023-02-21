@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23781935}
   m_LocalRotation: {x: -0, y: -0, z: -4.547473e-13, w: 1}
-  m_LocalPosition: {x: 121.99997, y: -70, z: 0}
+  m_LocalPosition: {x: -27, y: 872, z: 0}
   m_LocalScale: {x: 0.05279737, y: 0.044375405, z: 0.8530802}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -466,7 +466,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2af58a193e446ca49bb03ea75ea145b2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.259
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -475,7 +475,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 493.50064
+  MaxDistance: 84.458984
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1149,7 +1149,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 70714fe091916a448aa87c961baa6381, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.112
+  m_Volume: 0.0399
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1895,7 +1895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 412, y: 239}
+  m_AnchoredPosition: {x: 432, y: 1054}
   m_SizeDelta: {x: 245.3219, y: 200}
   m_Pivot: {x: 0.6, y: 0.5}
 --- !u!114 &519420037
@@ -4823,7 +4823,7 @@ PrefabInstance:
     - target: {fileID: 2591946356215144531, guid: 362390a37c438464dbd1b9d223d420d9, type: 3}
       propertyPath: enemyPunchEffect
       value: 
-      objectReference: {fileID: 1434605557}
+      objectReference: {fileID: 0}
     - target: {fileID: 2591946356215144532, guid: 362390a37c438464dbd1b9d223d420d9, type: 3}
       propertyPath: m_SortingLayer
       value: 3
