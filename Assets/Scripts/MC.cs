@@ -56,6 +56,7 @@ public class MC : MonoBehaviour
         if (health.currentHealth == 0)
         {
             gameOverScreen.Setup();
+            //Time.timeScale = 0;
         }
 
         //Show Game win scene when defeated all the enemies
