@@ -18,6 +18,7 @@ public class FillStatusBar : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         //handling lower health
         if (slider.value <= slider.minValue)
         {
@@ -31,7 +32,11 @@ public class FillStatusBar : MonoBehaviour
 
         float fillValue = playerHealth.currentHealth / playerHealth.maxHealth;
 
-        if (fillValue < slider.maxValue / 2 && fillValue > slider.maxValue / 3)
+        if (fillValue > slider.maxValue / 2)
+        {
+            fillImage.color = Color.red;
+        }
+        else if (fillValue > slider.maxValue / 3 && fillValue < slider.maxValue / 2)
         {
             fillImage.color = Color.yellow;
         }
