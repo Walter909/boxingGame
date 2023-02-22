@@ -71,6 +71,7 @@ public class MC : MonoBehaviour
 
     void OnWalk(InputAction.CallbackContext context)
     {
+
         moveInput = context.ReadValue<Vector2>();
 
         anim.SetFloat("isWalking", Mathf.Abs(moveInput.x));
@@ -84,8 +85,8 @@ public class MC : MonoBehaviour
             Flip();
         }
 
-
         rb.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
+
     }
     void Flip()
     {
@@ -113,14 +114,13 @@ public class MC : MonoBehaviour
 
     }
 
-    // Reduce health on collisions with Devil
+    // Should allow walking through devils
     // void OnColliderEnter2D(Collider2D collision)
     // {
 
     //     if (collision.name == "Devil")
     //     {
     //         Debug.Log("Touched enemy from " + collision.name);
-    //         health.TakeDamage(1);
     //     }
     // }
 }

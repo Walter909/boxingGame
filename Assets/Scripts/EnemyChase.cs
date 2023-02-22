@@ -18,12 +18,16 @@ public class EnemyChase : MonoBehaviour
     private Health health;
     private Animator anim;
 
+    private int numberDestroyed = 0;
+    public GameObject spawner;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
+        spawner = GameObject.Find("Spawner");
         attackArea = transform.GetChild(0).gameObject;
     }
 
