@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class MC : MonoBehaviour
 {
+
+    //punch soundFX
+    [SerializeField] private AudioSource punchEffect;
+    
     //Dealing damage
     private Health health;
     private GameObject attackArea;
@@ -98,6 +102,7 @@ public class MC : MonoBehaviour
         {
             anim.SetBool("isPunching", true);
             attackArea.SetActive(true);
+            punchEffect.Play();
         }
         else
         {
@@ -117,3 +122,4 @@ public class MC : MonoBehaviour
     //     }
     // }
 }
+//punch soundFX
