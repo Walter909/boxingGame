@@ -17,7 +17,6 @@ public class MC : MonoBehaviour
 
     //Moving
     public int moveSpeed;
-
     private Animator anim;
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -27,6 +26,12 @@ public class MC : MonoBehaviour
     bool isPunchTime = false;
 
     private float timePassed = 0f;
+
+    //Scenes
+    public GameOverScreen gameOverScreen;
+
+    public Canvas m_Canvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +58,15 @@ public class MC : MonoBehaviour
             timePassed = 0f;
         }
         //Show Game Over Screen when Health is 0
-        //Show Game win when defeated all the enemies
+        if (health.currentHealth == 0)
+        {
+            m_Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            gameOverScreen.Setup();
+            Time.timeScale = 0;
+        }
+
+        //Show Game win scene when defeated all the enemies
+
     }
 
     void OnWalk(InputAction.CallbackContext context)
