@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public int numberToSpawn;
     public GameObject devil;
+    public GameObject[] devils;
 
     // Start is called before the first frame update
     void Start()

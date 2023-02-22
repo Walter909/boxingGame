@@ -17,9 +17,12 @@ public class EnemyChase : MonoBehaviour
 
     private Health health;
     private Animator anim;
+    private GameObject devils;
+    private static int countDestroyed = 0;
 
-    private int numberDestroyed = 0;
-    public GameObject spawner;
+    public Canvas m_Canvas;
+    public WinScene winScene;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,6 @@ public class EnemyChase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
-        spawner = GameObject.Find("Spawner");
         attackArea = transform.GetChild(0).gameObject;
     }
 
@@ -49,16 +51,17 @@ public class EnemyChase : MonoBehaviour
     {
         if (health.currentHealth == 0)
         {
-            numberDestroyed++;
-            Destroy(this.gameObject);
+            countDestroyed++;
+            gameObject.SetActive(false);
         }
 
-        Spawner s = spawner.GetComponent<Spawner>();
-
-        Debug.Log("Number defeated: " + numberDestroyed);
-        if (s.numberToSpawn == numberDestroyed)
+        if (countDestroyed == 6)
         {
-            Debug.Log("Yay WON!");
+            m_Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            winScene.Setup();
+            Time.timeScale = 0;
+            Debug.Log("Yay Gameover");
+            countDestroyed = 0;
         }
 
         //Where is Devil facing 
@@ -72,8 +75,6 @@ public class EnemyChase : MonoBehaviour
         }
 
         distance = Vector2.Distance(transform.position, player.transform.position);
-
-        Debug.Log(distance);
 
         if (distance > 150)
         {
