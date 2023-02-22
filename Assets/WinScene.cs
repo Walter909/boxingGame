@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverScreen : MonoBehaviour
+public class WinScene : MonoBehaviour
+
 {
-
-
     public void Setup()
     {
         gameObject.SetActive(true);

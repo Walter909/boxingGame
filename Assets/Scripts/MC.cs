@@ -9,9 +9,6 @@ public class MC : MonoBehaviour
     private Health health;
     private GameObject attackArea;
 
-    private float timetoAttack = 0.25f;
-    private float timer = 0f;
-
     //Moving
     public int moveSpeed;
     private Animator anim;
